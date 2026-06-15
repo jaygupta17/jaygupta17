@@ -17,7 +17,7 @@ Building tools that tell stories and engineering elegant solutions. I specialize
 - **Encraft AI (AI Engineer):** Developing large-scale video analysis pipelines and hybrid RAG systems for enterprise compliance.
 - **Prepairo (AI Engineer):** Built a multi-agent GRE AI Tutor and an ETL pipeline that boosted DAU by 60%, while reducing AI infrastructure costs by 50% via token optimization.
 - **Apex:** An AI Desktop Assistant built on Tauri v2 with multimodal RAG and local filesystem ops.
-- **Sketchpen [sketchpen.app](https://jaygupta17.github.io):** An AI-driven explainer video generation tool for EdTech creators.
+- **Sketchpen [sketchpen.app](https://sketchpen.app):** An AI-driven explainer video generation tool for EdTech creators.
 
 ### 📬 Connect
 [Website](https://jaygupta17.github.io) • [LinkedIn](https://www.linkedin.com/in/jaygupta17) • [Email](mailto:jayajaygupta16@gmail.com)
