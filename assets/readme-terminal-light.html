@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { width: 1200px; height: 700px; background: #eff1f5; color: #4c4f69; font-family: 'JetBrains Mono', ui-monospace, monospace; overflow: hidden; }
+  .win { width: 100%; height: 100%; display: flex; flex-direction: column; }
+  .bar { height: 46px; flex: none; display: flex; align-items: center; gap: 9px; padding: 0 22px; background: #e6e9ef; border-bottom: 1px solid #ccd0da; }
+  .dot { width: 13px; height: 13px; border-radius: 50%; }
+  .dr { background: #d20f39; } .dy { background: #df8e1d; } .dg { background: #40a02b; }
+  .title { flex: 1; text-align: center; font-size: 15px; color: #9ca0b0; }
+  .content { flex: 1; display: flex; padding: 40px 46px; gap: 58px; }
+  .left { width: 420px; flex: none; display: flex; flex-direction: column; justify-content: flex-start; padding-top: 4px; }
+  .apple { font-size: 15px; line-height: 1.16; color: #8839ef; margin-left: 8px; }
+  .name { margin-top: 26px; font-size: 21px; font-weight: 600; color: #4c4f69; }
+  .name .cur { color: #8839ef; font-weight: 400; }
+  .handle { margin-top: 8px; font-size: 14.5px; color: #8c8fa1; }
+  .handle .at { color: #8839ef; }
+  .right { flex: 1; font-size: 16.5px; line-height: 1.78; padding-top: 4px; }
+  .headline { color: #8839ef; margin-bottom: 10px; white-space: nowrap; overflow: hidden; }
+  .headline .fill { color: #ccd0da; }
+  .row { display: grid; grid-template-columns: 142px 1fr; }
+  .k { color: #8c8fa1; }
+  .k::before { content: ". "; color: #ccd0da; }
+  .v { color: #4c4f69; white-space: nowrap; overflow: hidden; }
+  .dim { color: #8c8fa1; } .m { color: #8839ef; }
+  .sec { margin: 12px 0 6px; color: #8c8fa1; white-space: nowrap; overflow: hidden; }
+  .sec .fill { color: #ccd0da; }
+  .tmux { height: 34px; flex: none; background: #e6e9ef; border-top: 1px solid #ccd0da; display: flex; align-items: center; justify-content: space-between; padding: 0 22px; font-size: 13.5px; color: #9ca0b0; }
+  .tmux .seg { color: #6c6f85; } .tmux .hl { color: #8839ef; }
+</style>
+</head>
+<body>
+  <div class="win">
+    <div class="bar">
+      <span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span>
+      <span class="title">jay@gupta: ~</span>
+    </div>
+    <div class="content">
+      <div class="left">
+        <pre class="apple">                    'c.
+                 ,xNMM.
+               .OMMMMo
+               OMMM0,
+     .;loddo:' loolloddol;.
+   cKMMMMMMMMMMNWMMMMMMMMMM0:
+ .KMMMMMMMMMMMMMMMMMMMMMMMWd.
+ XMMMMMMMMMMMMMMMMMMMMMMMX.
+;MMMMMMMMMMMMMMMMMMMMMMMM:
+:MMMMMMMMMMMMMMMMMMMMMMMM:
+.MMMMMMMMMMMMMMMMMMMMMMMMX.
+ kMMMMMMMMMMMMMMMMMMMMMMMMWd.
+ .XMMMMMMMMMMMMMMMMMMMMMMWk.
+  ;MMMMMMMMMMMMMMMMMMMMMMd
+   ;MMMMMMWWWMMMMMMMk.
+     .l0MMMMMMM0l'
+        'cooll'</pre>
+        <div class="name">Jay Gupta<span class="cur">▍</span></div>
+        <div class="handle"><span class="at">@</span>guptajay19 · nagpur, india · utc+05:30</div>
+      </div>
+      <div class="right">
+        <div class="headline">jay@gupta <span class="fill">──────────────────────────────────</span></div>
+        <div class="row"><span class="k">os</span><span class="v">macos tahoe</span></div>
+        <div class="row"><span class="k">host</span><span class="v">encraft <span class="dim">·</span> ai engineer</span></div>
+        <div class="row"><span class="k">shell</span><span class="v">ghostty <span class="dim">·</span> catppuccin latte</span></div>
+        <div class="row"><span class="k">languages</span><span class="v">python <span class="dim">·</span> typescript <span class="dim">·</span> rust <span class="dim">(basics)</span></span></div>
+        <div class="row"><span class="k">ai</span><span class="v">agents <span class="dim">·</span> rag <span class="dim">·</span> evals <span class="dim">·</span> tts</span></div>
+        <div class="row"><span class="k">building</span><span class="v">sketchpen <span class="dim">(early access)</span></span></div>
+        <div class="row"><span class="k">open src</span><span class="v">openchamber <span class="dim">·</span> ai-python</span></div>
+        <div class="sec">── contact <span class="fill">────────────────────────────────────────────</span></div>
+        <div class="row"><span class="k">site</span><span class="v">jaygupta17.github.io</span></div>
+        <div class="row"><span class="k">x</span><span class="v">@guptajay19</span></div>
+        <div class="row"><span class="k">mail</span><span class="v">jayajaygupta16@gmail.com</span></div>
+        <div class="sec">── merged <span class="fill">─────────────────────────────────────────────</span></div>
+        <div class="row"><span class="k">openchamber</span><span class="v"><span class="m">#2796</span> <span class="dim">/btw</span> <span class="dim">·</span> <span class="m">#2767</span> <span class="dim">nested git</span></span></div>
+        <div class="row"><span class="k">ai-python</span><span class="v"><span class="m">#260</span> <span class="dim">media types</span> <span class="dim">·</span> <span class="m">#259</span> <span class="dim">stream finish</span></span></div>
+      </div>
+    </div>
+    <div class="tmux">
+      <span><span class="seg">[0]</span> 0:zsh  1:nvim  2:<span class="hl">opencode</span></span>
+      <span><span class="seg">jaygupta17</span> · latte</span>
+    </div>
+  </div>
+</body>
+</html>
