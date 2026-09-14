@@ -1,26 +1,32 @@
-# Jay G
-**Fullstack & AI Engineer**
+# Jay Gupta
 
-Building tools that tell stories and engineering elegant solutions. I specialize in multi-agent orchestration, scalable backend architecture, and AI-driven creative suites. 
+**AI engineer — agents, evals, LLM infra. Receipts, not takes.**
 
-### 🚀 Current Focus
-- **Vinci:** Building an AI-powered creative suite for video, design, and graphics using a multi-agent architecture (OpenCode + Remotion).
-- **System Architecture:** Systematically mastering Rust for high-performance tooling.
+```
+$ whoami
+> AI engineer @ encraft · building sketchpen (early access)
+> B.Tech CSE (Data Science), Nagpur
+```
 
-### 💻 Core Stack
-- **AI/Agents:** Pydantic-AI, LangGraph, ChromaDB, FAISS, GOT OCR2.0, ElevenLabs
-- **Languages:** Python, TypeScript, SQL (PostgreSQL), Rust
-- **Backend/Infra:** FastAPI, async SQLAlchemy, Docker, AWS, n8n, Playwright
-- **Frontend/Desktop:** React 19, Tauri v2, Tailwind CSS, Zustand
+**now**
+- **encraft** — video-analysis & retrieval pipelines for enterprise compliance
+- **sketchpen** — whiteboard-video engine built from scratch → [sketchpen.app](https://sketchpen.app)
+- **oss** — agent tooling: openchamber, ai-python
+- prev · **prepairo** — GRE AI tutor + daily ETL pipeline (3× app downloads, 60% DAU growth)
 
-### 🛠 Work & Projects
-- **Encraft AI (AI Engineer):** Developing large-scale video analysis pipelines and hybrid RAG systems for enterprise compliance.
-- **Prepairo (AI Engineer):** Built a multi-agent GRE AI Tutor and an ETL pipeline that boosted DAU by 60%, while reducing AI infrastructure costs by 50% via token optimization.
-- **Apex:** An AI Desktop Assistant built on Tauri v2 with multimodal RAG and local filesystem ops.
-- **Sketchpen [sketchpen.app](https://sketchpen.app):** An AI-driven explainer video generation tool for EdTech creators.
+**open source**
+- [openchamber #2796](https://github.com/openchamber/openchamber/pull/2796) — `/btw`: side questions in a temporary forked session
+- [openchamber #2767](https://github.com/openchamber/openchamber/pull/2767) — nested git repositories across the git surfaces
+- [ai-python #260](https://github.com/vercel-labs/ai-python/pull/260) + [#259](https://github.com/vercel-labs/ai-python/pull/259) — media-type detection & stream-finish fixes
 
-### 📬 Connect
-[Website](https://jaygupta17.github.io) • [LinkedIn](https://www.linkedin.com/in/jaygupta17) • [Email](mailto:jayajaygupta16@gmail.com)
+**selected work**
+- **Sketchpen** — script in, animated whiteboard explainer out. Voiceover with word-level sync, custom renderer. → [sketchpen.app](https://sketchpen.app)
+- **Apex** — desktop AI workspace: type-safe agents over MCP, Rust filesystem service. Private for now.
 
----
-*B.Tech CSE (Data Science) @ RCOEM Nagpur (2023–Present)*
+**stack**  
+`python · typescript · rust (basics) · sql`  
+`fastapi · postgres · docker · aws · gcp · pydantic-ai`  
+`agents · rag · evals · tts · ocr`
+
+**elsewhere**  
+[site](https://jaygupta17.github.io) · [x](https://x.com/guptajay19) · [linkedin](https://linkedin.com/in/jaygupta17) · [email](mailto:jayajaygupta16@gmail.com)
