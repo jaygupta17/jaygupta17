@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    width: 1200px; height: 260px;
+    background: #1e1e2e;
+    font-family: 'Inter', sans-serif;
+    color: #cdd6f4;
+    overflow: hidden;
+    position: relative;
+  }
+  .grid {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(#313244 1px, transparent 1px);
+    background-size: 30px 30px;
+    opacity: .45;
+    -webkit-mask-image: radial-gradient(ellipse 90% 90% at 30% 0%, #000 10%, transparent 85%);
+    mask-image: radial-gradient(ellipse 90% 90% at 30% 0%, #000 10%, transparent 85%);
+  }
+  .glow {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 40% 60% at 18% 0%, rgba(203,166,247,.12), transparent 70%);
+  }
+  .wrap { position: relative; height: 100%; padding: 44px 64px 40px; }
+  .prompt { font-family: 'JetBrains Mono', monospace; font-size: 21px; color: #7f849c; margin: 0; }
+  .prompt .s { color: #a6e3a1; margin-right: 9px; }
+  .prompt .cursor { color: #cba6f7; }
+  h1 { margin: 14px 0 10px; font-size: 58px; font-weight: 650; letter-spacing: -0.025em; line-height: 1; }
+  .role { font-size: 23px; color: #a6adc8; margin: 0; }
+  .meta { position: absolute; right: 64px; bottom: 40px; font-family: 'JetBrains Mono', monospace; font-size: 17px; color: #6c7086; }
+</style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="glow"></div>
+  <div class="wrap">
+    <p class="prompt"><span class="s">$</span>whoami<span class="cursor">▍</span></p>
+    <h1>Jay Gupta</h1>
+    <p class="role">AI engineer. agents, evals, llm infra.</p>
+    <span class="meta">nagpur, india</span>
+  </div>
+</body>
+</html>
