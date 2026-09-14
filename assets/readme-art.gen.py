@@ -1,0 +1,213 @@
+#!/usr/bin/env python3
+"""Generator for jay@gupta README terminal art (dark + latte variants).
+
+Regenerates:
+  assets/readme-terminal-dark.svg
+  assets/readme-terminal-light.svg
+
+Run:  python3 assets/readme-art.gen.py
+"""
+import os
+
+ROWS_SIL = [
+    ".........................", ".........................", ".........######..........", "........########.........",
+    ".......##########........", "......###########........", "......############.......", "......############.......",
+    "......############.......", ".....############........", "......###########........", "......############.......",
+    ".......##########........", "........########.........", ".........#######.........", "........##########.......",
+    "......##############.....", ".....#################...", "...####################..", "...####################..",
+    "..#####################..", "..######################.", "..######################.", "..######################.",
+    "..######################.",
+]
+CELL = 13
+
+
+def sil_rects():
+    out = []
+    for j, row in enumerate(ROWS_SIL):
+        for i, ch in enumerate(row):
+            if ch == "#":
+                out.append(f'<rect x="{i*CELL-0.5}" y="{j*CELL-0.5}" width="{CELL+1}" height="{CELL+1}"/>')
+    return "\n      ".join(out)
+
+
+SIL = sil_rects()
+
+# (x, shape, duration, begin, opacity) — colors cycle per theme
+PETALS = [
+    (70,   "pA", 13.0, -2.0,  0.60),
+    (150,  "pB", 16.0, -5.5,  0.45),
+    (240,  "pC", 12.0, -8.0,  0.55),
+    (330,  "pA", 15.0, -1.5,  0.65),
+    (450,  "pB", 17.0, -11.0, 0.42),
+    (560,  "pC", 11.0, -3.5,  0.50),
+    (670,  "pA", 14.0, -6.5,  0.45),
+    (780,  "pB", 16.5, -9.5,  0.62),
+    (890,  "pC", 12.5, -4.5,  0.48),
+    (990,  "pA", 15.5, -12.0, 0.58),
+    (1080, "pB", 13.5, -7.0,  0.44),
+    (1140, "pC", 14.5, -0.8,  0.60),
+]
+
+
+def petals_block(colors):
+    out = []
+    for k, (x, shape, dur, begin, op) in enumerate(PETALS):
+        c = colors[k % len(colors)]
+        out.append(
+            f'<use href="#{shape}" xlink:href="#{shape}" fill="{c}" opacity="{op}">\n'
+            f'        <animateTransform attributeName="transform" type="translate" '
+            f'values="{x},-30;{x+18},330;{x-12},745" keyTimes="0;0.5;1" dur="{dur}s" begin="{begin}s" repeatCount="indefinite"/>\n'
+            f'      </use>'
+        )
+    return "\n      ".join(out)
+
+
+def build(t):
+    css = (
+        "    text, tspan { white-space: pre; }\n"
+        f"    .text {{ fill: {t['text']}; }}\n"
+        f"    .sub {{ fill: {t['sub']}; }}\n"
+        f"    .ov0 {{ fill: {t['ov0']}; }}\n"
+        f"    .ov1 {{ fill: {t['ov1']}; }}\n"
+        f"    .faint {{ fill: {t['faint']}; }}\n"
+        f"    .mauve {{ fill: {t['mauve']}; }}\n"
+    )
+
+    rows_main = [
+        ("os", [("macos tahoe", "text")]),
+        ("host", [("encraft ", "text"), ("·", "ov1"), (" ai engineer", "text")]),
+        ("shell", [("ghostty ", "text"), ("·", "ov1"), (f" catppuccin {t['shellname']}", "text")]),
+        ("languages", [("python ", "text"), ("·", "ov1"), (" typescript ", "text"), ("·", "ov1"), (" rust ", "text"), ("(basics)", "ov1")]),
+        ("ai", [("agents ", "text"), ("·", "ov1"), (" rag ", "text"), ("·", "ov1"), (" evals ", "text"), ("·", "ov1"), (" tts", "text")]),
+        ("building", [("sketchpen ", "text"), ("(early access)", "ov1")]),
+        ("open src", [("openchamber ", "text"), ("·", "ov1"), (" ai-python", "text")]),
+    ]
+    rows_contact = [("site", "jaygupta17.github.io"), ("x", "@guptajay19"), ("mail", "jayajaygupta16@gmail.com")]
+    rows_merged = [
+        ("openchamber", [("#2796", "mauve"), (" ", "text"), ("/btw", "ov1"), (" ", "text"), ("·", "ov1"), (" ", "text"), ("#2767", "mauve"), (" ", "text"), ("nested git", "ov1")]),
+        ("ai-python", [("#260", "mauve"), (" ", "text"), ("media types", "ov1"), (" ", "text"), ("·", "ov1"), (" ", "text"), ("#259", "mauve"), (" ", "text"), ("stream finish", "ov1")]),
+    ]
+
+    def rows(rs, y0, step, size=18.5):
+        out, y = [], y0
+        for label, spans in rs:
+            out.append(f'<text font-size="{size}"><tspan class="faint" x="524" y="{y}">. </tspan><tspan class="ov1">{label}</tspan></text>')
+            if isinstance(spans, str):
+                out.append(f'<text class="text" x="674" y="{y}" font-size="{size}">{spans}</text>')
+            else:
+                val = "".join(f'<tspan class="{c}">{x}</tspan>' for x, c in spans)
+                out.append(f'<text class="text" x="674" y="{y}" font-size="{size}">{val}</text>')
+            y += step
+        return "\n    ".join(out), y
+
+    mains, _ = rows(rows_main, 140, 33)
+    contacts, _ = rows(rows_contact, 411, 33)
+    mergeds, _ = rows(rows_merged, 550, 33)
+
+    rule1 = "─" * 47
+    rule2 = "─" * 46
+    rule3 = "─" * 47
+
+    svg = f'''<?xml version="1.0" encoding="UTF-8"?>
+<!-- jay@gupta terminal readout · v4 · shimmer + petals · generated by assets/readme-art.gen.py -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="700" viewBox="0 0 1200 700" role="img" xml:space="preserve" font-family="ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace">
+  <title>jay@gupta terminal: ai engineer at encraft, building sketchpen</title>
+  <defs>
+    <radialGradient id="spill" cx="0.5" cy="0.45" r="0.55">
+      <stop offset="0" stop-color="{t['glow']}" stop-opacity="{t['glowO']}"/>
+      <stop offset="1" stop-color="{t['glow']}" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#ffffff" stop-opacity="{t['sheenO']}"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="silsheen" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#ffffff" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.65 0.65 0.65 0 0"/>
+    </filter>
+    <clipPath id="winclip"><rect x="0" y="47" width="1200" height="618"/></clipPath>
+    <clipPath id="silclip">
+      {SIL}
+    </clipPath>
+    <ellipse id="pA" rx="7" ry="3.8" transform="rotate(-24)"/>
+    <ellipse id="pB" rx="5.5" ry="3" transform="rotate(18)"/>
+    <ellipse id="pC" rx="8" ry="4.4" transform="rotate(-8)"/>
+    <style>
+{css}    </style>
+  </defs>
+
+  <rect fill="{t['base']}" width="1200" height="700"/>
+  <circle cx="520" cy="380" r="330" fill="url(#spill)"/>
+
+  <rect fill="{t['mantle']}" width="1200" height="46"/>
+  <line stroke="{t['line']}" stroke-width="1" x1="0" y1="46.5" x2="1200" y2="46.5"/>
+  <circle cx="30" cy="23" r="6.5" fill="{t['r']}"/>
+  <circle cx="52" cy="23" r="6.5" fill="{t['y']}"/>
+  <circle cx="74" cy="23" r="6.5" fill="{t['g']}"/>
+  <text class="ov0" x="600" y="29" font-size="16" text-anchor="middle">jay@gupta: ~</text>
+
+  <text font-size="18.5"><tspan class="mauve" x="524" y="106">jay@gupta </tspan><tspan class="faint" x="635" y="106">{rule1}</tspan></text>
+  {mains}
+
+  <text font-size="18.5"><tspan class="ov1" x="524" y="378">── contact </tspan><tspan class="faint" x="646" y="378">{rule2}</tspan></text>
+  {contacts}
+
+  <text font-size="18.5"><tspan class="ov1" x="524" y="517">── merged </tspan><tspan class="faint" x="635" y="517">{rule3}</tspan></text>
+  {mergeds}
+
+  <g transform="translate(54 150)">
+    <g fill="{t['mauve']}">
+      {SIL}
+    </g>
+    <g clip-path="url(#silclip)">
+      <rect y="-30" width="120" height="380" fill="url(#silsheen)" transform="skewX(-16)">
+        <animate attributeName="x" values="-240;430;430" keyTimes="0;0.38;1" dur="9s" begin="2.5s" repeatCount="indefinite"/>
+      </rect>
+    </g>
+  </g>
+  <text class="text" x="54" y="504" font-size="24" font-weight="600">Jay Gupta</text>
+  <text class="mauve" x="192" y="504" font-size="24">▍<animate attributeName="opacity" values="1;0;1" dur="1.2s" repeatCount="indefinite" begin="0.6s"/></text>
+  <text class="ov1" x="54" y="534" font-size="16"><tspan class="mauve">@</tspan>guptajay19 · nagpur, india · utc+05:30</text>
+
+  <rect x="-420" y="60" width="180" height="560" fill="url(#sheen)" transform="skewX(-14)">
+    <animate attributeName="x" values="-420;1420;1420" keyTimes="0;0.32;1" dur="12s" begin="1s" repeatCount="indefinite"/>
+  </rect>
+
+  <g clip-path="url(#winclip)">
+      {petals_block(t['petals'])}
+  </g>
+
+  <rect fill="{t['mantle']}" y="666" width="1200" height="34"/>
+  <line stroke="{t['line']}" stroke-width="1" x1="0" y1="666.5" x2="1200" y2="666.5"/>
+  <text x="22" y="687.5" font-size="14.5"><tspan class="sub">[0]</tspan><tspan class="ov0"> 0:zsh  1:nvim  2:</tspan><tspan class="mauve">opencode</tspan></text>
+  <text x="1178" y="687.5" font-size="14.5" text-anchor="end"><tspan class="sub">jaygupta17</tspan><tspan class="ov0"> · {t['shellname']}</tspan></text>
+
+  <rect width="1200" height="700" filter="url(#grain)" opacity="0.055"/>
+</svg>
+'''
+    return svg
+
+
+dark = dict(base="#1e1e2e", mantle="#181825", line="#313244", text="#cdd6f4", sub="#a6adc8",
+            ov0="#6c7086", ov1="#7f849c", faint="#45475a", mauve="#cba6f7", green="#a6e3a1",
+            r="#f38ba8", y="#f9e2af", g="#a6e3a1",
+            glow="#cba6f7", glowO="0.10", sheenO="0.07", shellname="mocha",
+            petals=["#cba6f7", "#f5e0dc"])
+
+light = dict(base="#eff1f5", mantle="#e6e9ef", line="#ccd0da", text="#4c4f69", sub="#6c6f85",
+             ov0="#9ca0b0", ov1="#8c8fa1", faint="#ccd0da", mauve="#8839ef", green="#40a02b",
+             r="#d20f39", y="#df8e1d", g="#40a02b",
+             glow="#8839ef", glowO="0.08", sheenO="0.30", shellname="latte",
+             petals=["#8839ef", "#dc8a78"])
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+for name, t in [("readme-terminal-dark.svg", dark), ("readme-terminal-light.svg", light)]:
+    path = os.path.join(HERE, name)
+    open(path, "w").write(build(t))
+    print(name, os.path.getsize(path), "bytes")
