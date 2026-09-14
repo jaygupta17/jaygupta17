@@ -34,18 +34,18 @@ SIL = sil_rects()
 
 # (x, shape, duration, begin, opacity) — colors cycle per theme
 PETALS = [
-    (70,   "pA", 13.0, -2.0,  0.60),
-    (150,  "pB", 16.0, -5.5,  0.45),
-    (240,  "pC", 12.0, -8.0,  0.55),
-    (330,  "pA", 15.0, -1.5,  0.65),
-    (450,  "pB", 17.0, -11.0, 0.42),
-    (560,  "pC", 11.0, -3.5,  0.50),
-    (670,  "pA", 14.0, -6.5,  0.45),
-    (780,  "pB", 16.5, -9.5,  0.62),
-    (890,  "pC", 12.5, -4.5,  0.48),
-    (990,  "pA", 15.5, -12.0, 0.58),
-    (1080, "pB", 13.5, -7.0,  0.44),
-    (1140, "pC", 14.5, -0.8,  0.60),
+    (70,   "pA", 13.0, -2.0,  0.55),
+    (150,  "pB", 16.0, -5.5,  0.40),
+    (240,  "pC", 12.0, -8.0,  0.48),
+    (330,  "pA", 15.0, -1.5,  0.52),
+    (450,  "pB", 17.0, -11.0, 0.36),
+    (560,  "pC", 11.0, -3.5,  0.44),
+    (670,  "pA", 14.0, -6.5,  0.40),
+    (780,  "pB", 16.5, -9.5,  0.50),
+    (890,  "pC", 12.5, -4.5,  0.42),
+    (990,  "pA", 15.5, -12.0, 0.50),
+    (1080, "pB", 13.5, -7.0,  0.38),
+    (1140, "pC", 14.5, -0.8,  0.52),
 ]
 
 
@@ -127,6 +127,11 @@ def build(t):
       <stop offset="0.5" stop-color="#ffffff" stop-opacity="0.30"/>
       <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
     </linearGradient>
+    <linearGradient id="edgesheen" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#ffffff" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
     <filter id="grain" x="0" y="0" width="100%" height="100%">
       <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" result="n"/>
       <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.65 0.65 0.65 0 0"/>
@@ -147,6 +152,9 @@ def build(t):
 
   <rect fill="{t['mantle']}" width="1200" height="46"/>
   <line stroke="{t['line']}" stroke-width="1" x1="0" y1="46.5" x2="1200" y2="46.5"/>
+  <rect x="-200" y="45.4" width="150" height="2.2" fill="url(#edgesheen)">
+    <animate attributeName="x" values="-200;1250;1250" keyTimes="0;0.08;1" dur="8s" begin="3.5s" repeatCount="indefinite"/>
+  </rect>
   <circle cx="30" cy="23" r="6.5" fill="{t['r']}"/>
   <circle cx="52" cy="23" r="6.5" fill="{t['y']}"/>
   <circle cx="74" cy="23" r="6.5" fill="{t['g']}"/>
@@ -166,8 +174,8 @@ def build(t):
       {SIL}
     </g>
     <g clip-path="url(#silclip)">
-      <rect y="-30" width="120" height="380" fill="url(#silsheen)" transform="skewX(-16)">
-        <animate attributeName="x" values="-240;430;430" keyTimes="0;0.38;1" dur="9s" begin="2.5s" repeatCount="indefinite"/>
+      <rect y="-30" width="60" height="380" fill="url(#silsheen)" transform="skewX(-16)">
+        <animate attributeName="x" values="-140;380;380" keyTimes="0;0.12;1" dur="8s" begin="4s" repeatCount="indefinite"/>
       </rect>
     </g>
   </g>
@@ -175,8 +183,8 @@ def build(t):
   <text class="mauve" x="192" y="504" font-size="24">▍<animate attributeName="opacity" values="1;0;1" dur="1.2s" repeatCount="indefinite" begin="0.6s"/></text>
   <text class="ov1" x="54" y="534" font-size="16"><tspan class="mauve">@</tspan>guptajay19 · nagpur, india · utc+05:30</text>
 
-  <rect x="-420" y="60" width="180" height="560" fill="url(#sheen)" transform="skewX(-14)">
-    <animate attributeName="x" values="-420;1420;1420" keyTimes="0;0.32;1" dur="12s" begin="1s" repeatCount="indefinite"/>
+  <rect x="-160" y="50" width="64" height="610" fill="url(#sheen)" transform="skewX(-14)">
+    <animate attributeName="x" values="-160;1360;1360" keyTimes="0;0.09;1" dur="8s" begin="1.5s" repeatCount="indefinite"/>
   </rect>
 
   <g clip-path="url(#winclip)">
@@ -197,13 +205,13 @@ def build(t):
 dark = dict(base="#1e1e2e", mantle="#181825", line="#313244", text="#cdd6f4", sub="#a6adc8",
             ov0="#6c7086", ov1="#7f849c", faint="#45475a", mauve="#cba6f7", green="#a6e3a1",
             r="#f38ba8", y="#f9e2af", g="#a6e3a1",
-            glow="#cba6f7", glowO="0.10", sheenO="0.07", shellname="mocha",
+            glow="#cba6f7", glowO="0.10", sheenO="0.10", shellname="mocha",
             petals=["#cba6f7", "#f5e0dc"])
 
 light = dict(base="#eff1f5", mantle="#e6e9ef", line="#ccd0da", text="#4c4f69", sub="#6c6f85",
              ov0="#9ca0b0", ov1="#8c8fa1", faint="#ccd0da", mauve="#8839ef", green="#40a02b",
              r="#d20f39", y="#df8e1d", g="#40a02b",
-             glow="#8839ef", glowO="0.08", sheenO="0.30", shellname="latte",
+             glow="#8839ef", glowO="0.08", sheenO="0.35", shellname="latte",
              petals=["#8839ef", "#dc8a78"])
 
 HERE = os.path.dirname(os.path.abspath(__file__))
